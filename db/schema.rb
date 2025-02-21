@@ -14,8 +14,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_21_101141) do
   create_table "todos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.string "is_completed"
-    t.string "boolean"
+    t.boolean "is_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
