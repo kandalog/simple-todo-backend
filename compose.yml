@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    env_file: ./docker/app/.env
+    tty: true
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./:/myapp
+    ports:
+      - "5000:3000"
+    environment:
+      - TZ=Asia/Tokyo
+  db:
+    image: mysql:8.0.31
+    platform: linux/amd64
+    env_file: ./docker/db/.env
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./docker/db/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/init:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    healthcheck:
+      test:
+        ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      start_period: 5s
+      timeout: 20s
+      retries: 10
+    environment:
+      TZ: Asia/Tokyoaa
