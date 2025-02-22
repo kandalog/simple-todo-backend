@@ -1,4 +1,8 @@
 class User < ApplicationRecord
-  validates :email, presence: true, uniqueness: true
-  # TODO has_secure_passwordとpasswordのバリデーションを追加
+  has_secure_password
+  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}\z/
+
+  validates :email, presence: true, uniqueness: true, format: { with: EMAIL_REGEX, message: "emailの形式が間違っています" }
+  validates :password, presence: true, length: { minimum: 6 }, format: { with: PASSWORD_REGEX, message: "パスワードは8桁以上で半角英大文字・小文字・数字・記号をそれぞれ1文字以上含む必要があります" }
 end
