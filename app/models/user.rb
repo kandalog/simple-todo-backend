@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
+
+  has_many :todos, dependent: :destroy
+
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}\z/
 
