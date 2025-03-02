@@ -42,13 +42,13 @@ RSpec.describe "Users", type: :request do
       # login処理
       post "/login", params: { user: {  email: "example2@example.com", password: "Password1234!" } }
       token = body["token"]
-      headers = { "content-type" => "application/json", "Authorization" => "Bearer #{token}" }
+      # Content-TypeではなくACCEPTを使用するとas: :jsonが不要になる
+      headers = { "ACCEPT" => "application/json", "Authorization" => "Bearer #{token}" }
 
       # 更新処理
       put "/users/#{user2.id}",
         params: { user: { email: "updated@gmail.com", password: "Password1234!" } },
-        headers: headers,
-        as: :json
+        headers: headers
 
       expect(response).to be_successful
       expect(body['email']).to eq('updated@gmail.com')
