@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :todo do
-    title { 'test' }
-    content { 'test' }
+    title { Faker::Lorem.sentence }
+    content { Faker::Lorem.sentence }
     is_completed { false }
     association :user
   end
