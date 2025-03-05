@@ -33,22 +33,13 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  # TODO ログイン状態の切り出し
-
   describe "PUT /users/'id" do
-    let!(:user2) { create(:user, email: "example2@example.com", password: "Password1234!") }
+    include_context 'login setup'
 
     it 'ユーザーを更新できる' do
-      # login処理
-      post "/login", params: { user: {  email: "example2@example.com", password: "Password1234!" } }
-      token = body["token"]
-      # Content-TypeではなくACCEPTを使用するとas: :jsonが不要になる
-      headers = { "ACCEPT" => "application/json", "Authorization" => "Bearer #{token}" }
-
-      # 更新処理
-      put "/users/#{user2.id}",
+      put "/users/#{login_user.id}",
         params: { user: { email: "updated@gmail.com", password: "Password1234!" } },
-        headers: headers
+        headers: login_headers
 
       expect(response).to be_successful
       expect(body['email']).to eq('updated@gmail.com')
