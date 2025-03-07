@@ -38,7 +38,7 @@ RSpec.describe "Users", type: :request do
 
     it 'ユーザーを更新できる' do
       put "/users/#{login_user.id}",
-        params: { user: { email: "updated@gmail.com", password: "Password1234!" } },
+        params: { user: { email: "updated@gmail.com", password: "Password123!" } },
         headers: login_headers
 
       expect(response).to be_successful
