@@ -4,21 +4,21 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users
+    render json: { users: }
   end
 
   def show
     user = User.find(params[:id])
     render_unauthorized unless current_user?(user)
 
-    render json: user
+    render json: { user: }
   end
 
   def create
     user = User.new(user_params)
 
     if user.save
-      render json: user, status: :created
+      render json: { user: }, status: :created
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     render_unauthorized unless current_user?(user)
     if user.update(user_params)
-      render json: user
+      render json: { user: }
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     render_unauthorized unless current_user?(user)
 
     user.destroy
-    render json: user
+    render json: { user: }
   end
 
   private

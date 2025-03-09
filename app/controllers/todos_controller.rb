@@ -3,19 +3,19 @@ class TodosController < ApplicationController
 
   def index
     todos = @current_user.todos
-    render json: todos
+    render json: { todos: }
   end
 
   def show
     todo = @current_user.todos.find(params[:id])
-    render json: todo
+    render json: { todo: }
   end
 
   def create
     todo = @current_user.todos.new(todo_params)
 
     if todo.save
-      render json: todo
+      render json: { todo: }, status: :created
     else
       render json: { error: todo.errors.messages }, status: 422
     end
@@ -24,13 +24,13 @@ class TodosController < ApplicationController
   def update
     todo = @current_user.todos.find(params[:id])
     todo.update(is_completed: !todo.is_completed)
-    render json: todo
+    render json: { todo: }
   end
 
   def destroy
     todo = @current_user.todos.find(params[:id])
     todo.destroy
-    render json: todo
+    render json: { todo: }
   end
 
 
