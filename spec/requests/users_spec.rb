@@ -1,26 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  let!(:user) { create(:user) }
-
   after { User.destroy_all }
 
   describe "GET /users" do
-    before { get '/users' }
+    include_context 'admin setup'
 
-    it 'ユーザー覧を取得できる' do
+    before { get '/users', headers: admin_headers }
+
+    it 'adminはユーザー覧を取得できる' do
       expect(response).to be_successful
       expect(body.size).to eq(1)
     end
   end
 
   describe "GET /users/:id" do
-    before { get "/users/#{user.id}" }
+    include_context 'login setup'
+
+    before { get "/users/#{login_user.id}", headers: login_headers }
 
     it 'ユーザーを取得できる' do
       expect(response).to be_successful
-      pp user.id
-      expect(body['id']).to eq(user.id)
+      expect(body[:user][:id]).to eq(login_user.id)
     end
   end
 
@@ -29,7 +30,7 @@ RSpec.describe "Users", type: :request do
 
     it 'ユーザーを作成できる' do
       expect(response).to be_successful
-      expect(body['email']).to eq('sample@example.com')
+      expect(body[:user][:email]).to eq('sample@example.com')
     end
   end
 
@@ -42,12 +43,14 @@ RSpec.describe "Users", type: :request do
         headers: login_headers
 
       expect(response).to be_successful
-      expect(body['email']).to eq('updated@gmail.com')
+      expect(body[:user][:email]).to eq('updated@gmail.com')
     end
   end
 
   describe "DELETE /users/:id" do
-    before { delete "/users/#{user.id}" }
+    include_context 'login setup'
+
+    before { delete "/users/#{login_user.id}", headers: login_headers }
 
     it 'ユーザーを削除できる' do
       expect(response).to be_successful
