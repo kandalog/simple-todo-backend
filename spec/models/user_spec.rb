@@ -52,4 +52,12 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '初期値の確認' do
+    it 'is_adminはfalseである' do
+        # FactoryBotでは明示的にfalseを設定しているため、Modelのデフォルト値を検証する
+        user = User.new(email: 'test@example.com', password: 'Password123!')
+        expect(user.is_admin).to eq false
+    end
+  end
 end
