@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render_unauthorized unless is_current_user_or_admin?(user)
+    render_unauthorized unless current_user?(user)
 
     render json: user
   end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    render_unauthorized unless is_current_user_or_admin?(user)
+    render_unauthorized unless current_user?(user)
     if user.update(user_params)
       render json: user
     else
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    render_unauthorized unless is_current_user_or_admin?(user)
+    render_unauthorized unless current_user?(user)
 
     user.destroy
     render json: user

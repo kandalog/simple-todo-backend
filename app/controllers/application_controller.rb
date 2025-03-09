@@ -46,11 +46,6 @@ class ApplicationController < ActionController::API
     @current_user||=authenticate == user
   end
 
-  # 現在のユーザーか管理者かどうかを確認する
-  def is_current_user_or_admin?(user)
-    current_user?(user) || is_admin?
-  end
-
   # 認証エラー時のレスポンスを返す
   def render_unauthorized(message = "権限がありません")
     render json: { errors: message }, status: :unauthorized
