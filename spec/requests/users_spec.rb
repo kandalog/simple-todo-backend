@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  after { User.destroy_all }
-
   describe "GET /users" do
     context 'adminがログインしているとき' do
       include_context 'admin setup'
