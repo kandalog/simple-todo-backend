@@ -86,6 +86,18 @@ RSpec.describe "Users", type: :request do
     it 'userの合計数が1つ増えている' do
       expect(User.count).to eq(1)
     end
+
+    context 'paramsにis_admin: trueが含まれているとき' do
+      before { post '/users', params: { user: { email: 'test@example.com', password: "Password123!", is_admin: true } } }
+
+      it 'statusが200である' do
+        expect(response).to be_successful
+      end
+
+      it 'is_adminは無視されて、一般ユーザーが作成される' do
+        expect(body[:user][:is_admin]).to be_falsey
+      end
+    end
   end
 
   describe "PUT /users/'id" do
