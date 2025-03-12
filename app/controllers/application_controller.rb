@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   def create_token(user_id)
     token_expiry = 24.hours.from_now.to_i
     payload = { user_id: user_id, exp: token_expiry }
-    secret_key = ENV['JWT_SECRET_KEY']
+    secret_key = ENV["JWT_SECRET_KEY"]
 
     JWT.encode(payload, secret_key)
   end
