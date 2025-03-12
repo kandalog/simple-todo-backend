@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::API
+  def check_health
+    render json: { status: "ok" }
+  end
+
   # トークンを作成する
   def create_token(user_id)
     token_expiry = 24.hours.from_now.to_i

@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/app/Dockerfile
-    env_file: ./docker/app/.env
+    env_file: ./docker/.env
     tty: true
     depends_on:
       db:
@@ -17,7 +17,7 @@ services:
   db:
     image: mysql:8.0.31
     platform: linux/amd64
-    env_file: ./docker/db/.env
+    env_file: ./docker/.env
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     volumes:
