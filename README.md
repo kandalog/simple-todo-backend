@@ -1,4 +1,4 @@
-# シンプタスク
+# シンプルタスク
 
 ## 使用技術
 
@@ -8,7 +8,7 @@
 | フレームワーク       | [![Ruby on Rails](https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white)](https://rubyonrails.org/)                                                                                                                                                                                                                                                                                             |
 | データベース         | [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)                                                                                                                                                                                                                                                                                                                       |
 | テストフレームワーク | [![RSpec](https://img.shields.io/badge/RSpec-CC0000?style=for-the-badge&logo=ruby&logoColor=white)](https://rspec.info/) [![FactoryBot](https://img.shields.io/badge/FactoryBot-6F42C1?style=for-the-badge&logo=ruby&logoColor=white)](https://github.com/thoughtbot/factory_bot)                                                                                                                                                                  |
-| インフラ             | [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions) [![Amazon AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/) |
+| インフラ             | [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions) |
 
 ## 概要
 
@@ -16,7 +16,7 @@
 
 ## 公開 URL
 
-http://sample.com
+未公開
 
 ## Getting Started(local)
 
